@@ -18,3 +18,14 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('home');
 });
+
+
+// Route::group(['prefix' => 'admin'], function(){
+
+// Route::resource('users', 'UsersController');
+
+// Route::get('lstusers', 'UsersController@getusers')->name('get.users');
+
+// });
+Route::resource('users', 'UsersController');
+Route::get('lstusers', 'UsersController@getusers')->name('get.users');

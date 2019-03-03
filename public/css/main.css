@@ -7,7 +7,11 @@ body{
 	background-color: #66999;		
 }
 
+
+.btn-abm{
+	padding: 0;
+}
+
 i{
 	padding:5px;
 }
-

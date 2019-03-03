@@ -65,8 +65,7 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-lock"></i>Usuarios</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown06">
-                  <a class="dropdown-item" href="#">Creación de usuarios</a>
-                  <a class="dropdown-item" href="#">Eliminación y suspención</a>
+                  <a class="dropdown-item" href="{{route('users.index')}}">Administración de usuarios</a>     
                   <a class="dropdown-item" href="#">Registro de Log</a>
                 </div>
               </li>
