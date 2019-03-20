@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #016495;">
 
 
-          <a class="navbar-brand" href="#"></a>
+          <a class="btn btn-outline-info" href="{{ route('home') }}" style="padding: 4px; margin-top: 2px; margin-left: 15px;margin-right: 10px;" title="Página de inicio"><i class="fas fa-home"></i></a>
+
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -9,8 +10,8 @@
           <div class="collapse navbar-collapse" id="navbarsExample05">
             <ul class="navbar-nav mr-auto">
              
-              <li class="nav-item dropdown active">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-clipboard-list"></i>Pedidos <span class="sr-only">(current)</span></a> 
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-clipboard-list"></i>Pedidos</a> 
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                   <a class="dropdown-item" href="#">Creación de pedidos de trabajo</a>
                   <a class="dropdown-item" href="#">Asociar presupuesto</a>
@@ -66,7 +67,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-lock"></i>Usuarios</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown06">
                   <a class="dropdown-item" href="{{route('users.index')}}">Administración de usuarios</a>     
-                  <a class="dropdown-item" href="#">Registro de Log</a>
+                  <a class="dropdown-item" href="{{route('logs.users')}}">Registro de Log</a>
                 </div>
               </li>
             <!--   <li class="nav-item dropdown">
@@ -78,9 +79,19 @@
                 </div>
               </li> -->
             </ul>
-            <span class="navbar-text"><a href=""><i class="fas fa-door-open"></i></a>
 
-              Chabbert, Diego
-            </span>
+
+
+            <form class="form-inline my-2 my-lg-0" method="POST" action="{{ route('logout') }}">
+              {{ csrf_field() }}
+              
+              <span class="navbar-text" style="=margin-right: 5px;">Usuario: {{ auth()->user()->name }}</span>
+
+                <button class="btn btn-outline-info btn-cambiarpassword" style="padding: 4px; margin-top: 2px; margin-left: 15px;" title="Cambiar contraseña de acceso"><i class="fas fa-key"></i></button>                
+
+                <button class="btn btn-outline-info" style="padding: 4px; margin-top: 2px; margin-left: 15px;" title="Salir del Sistema"><i class="fas fa-door-open"></i>Salir</button>
+                                          
+            </form>
+
           </div>
         </nav>

@@ -16,16 +16,20 @@
 
 
             <div class="container"> 
-                <div class="row label-top">
-                    <div class="mx-auto"><h1><strong>EPSILON S.R.L</strong></h1></div>              
-                </div>
 
-                <div class="row">                   
-                    <div class="mx-auto">
-                            <p>Bienvenido al Sistema de Gestión de Servicios de Laboratorio</p>
-                                                    
+                <div class="row align-items-center" style="margin-top: 35px;">
+                    <div class="col">
+                     
                     </div>
-                </div>
+                    <div class="col-6 text-center">
+                       <h1><strong>EPSILON S.R.L</strong></h1>
+                       <p>Bienvenido al Sistema de Gestión de Servicios de Laboratorio</p>
+                      
+                    </div>
+                    <div class="col">
+                      
+                    </div>
+                </div>                               
 
 
                 <div class="row">
@@ -37,21 +41,34 @@
                                     <p>Ingrese su nombre de usuario y contraseña:</p>
                                 </div>
                                 <div class="form-top-right">
-                                    <i class="fa fa-lock"></i>
+                                    <img src="{{asset('images/LOGO.png')}}"  style="width: 130px;height: 130px;">
                                 </div>
                             </div>
                             <div class="form-bottom">
-                                <form role="form" action="" method="post" class="login-form">
+
+                                <form role="form" action="{{ route('login') }}" method="POST" class="login-form">
+
+                                    {{ csrf_field() }}
+
                                     <div class="form-group">
-                                        <label class="sr-only" for="form-username">Username</label>
-                                        <input type="text" name="form-username" placeholder="Usuario..." class="form-username form-control" id="form-username">
+
+                                        <label class="sr-only" for="username">Username</label>
+                                        <input type="text" name="username" value="{{ old('username') }}"placeholder="Usuario..." class="username form-control {{ $errors->has('username') ? 'is-invalid' : '' }}" id="username">
+
+                                        {!! $errors->first('username', '<span class="help-block" style="color:red;">:message </span>') !!}
                                     </div>
                                     <div class="form-group">
-                                        <label class="sr-only" for="form-password">Password</label>
-                                        <input type="password" name="form-password" placeholder="Contraseña..." class="form-password form-control" id="form-password">
+
+                                        <label class="sr-only" for="password">Password</label>
+                                        <input type="password" name="password" placeholder="Contraseña..." class="password form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" id="password">
+
+                                        {!! $errors->first('password', '<span class="help-block" style="color:red;">:message </span>') !!}
+
                                     </div>
+
                                     <button type="submit" class="btn btn-primary">Ingresar</button>
                                 </form>
+
                             </div>
                         </div>
 
@@ -61,6 +78,7 @@
             </div>
           
 
+<script src="{{asset('js/bootstrap/bootstrap.min.js')}}"></script>
 
 </body>
 

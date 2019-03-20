@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use App\User;
-use App\Http\Requests\StoreUserRequest;
+use App\Role;
+use App\Log;
 use DataTables;
+use Illuminate\Validation\Rule;
 
 
 class UsersController extends Controller
@@ -15,36 +18,74 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    
+
+    public function index(Request $request)
     {
-      //  dd('eeodioen');
+     
+        $request->user()->authorizeRoles('Administrador de usuarios');
 
-      // $users = User::orderBy('id', 'ASC');
-       //return view('admin.users.index')->with('users', $users);
+        $this->insertlog(Auth::user()->id, 'Acceso a administracion de usuarios');
 
-       //$user = User::findOrFail(1);
-       //return $user->roles;
-
-    	//return datatables()
-    	//->eloquent(User::orderBy('id', 'ASC'))
-    	//->toJson();
+        // $log = new Log();
+        // $log->user_id = Auth::user()->id;
+        // $log->descripcion = 'Acceso a administracion de usuarios';
+        // $log->save();
+        
     	return view('admin.users.index');
     }
+
+    
+    public function log(Request $request){
+
+        $request->user()->authorizeRoles('Administrador de usuarios');
+
+        $this->insertlog(Auth::user()->id, 'Acceso al registro de logs');
+
+        // $log = new Log();
+        // $log->user_id = Auth::user()->id;
+        // $log->descripcion = 'Acceso al registro de logs';
+        // $log->save();
+
+        return view('admin.users.log');
+
+    }
+
+
+    public function getlogs()
+    {      
+
+        $logs = User::join('logs', 'users.id', '=', 'logs.user_id')                      
+                    ->select(['logs.id', 'users.name', 'logs.descripcion', 'logs.created_at as fecha']);               
+                   
+       
+        return DataTables::of($logs)   
+            ->editColumn('fecha', function ($log) {
+                return date('d/m/Y H:i', strtotime($log->fecha));
+              })
+            ->addIndexColumn()
+            ->make(true);
+
+    }
+
 
     public function getusers()
     {
 
     	//return DataTables::of(User::query())->make(true);
-
-        $model = User::query();
+        $model = User::orderBy('name', 'ASC');
+        //$model = User::query();
 
         return DataTables::of($model)
             ->addColumn('action', function($model){
                 return view('admin.users._action', [
                     'model' => $model,
-                    'url_show' => route('users.show', $model->id),
+                    'url_rol' => route('rol.user', $model->id),
                     'url_edit' => route('users.edit', $model->id),
-                    'url_destroy' => route('users.destroy', $model->id)
+                    'url_destroy' => route('users.destroy', $model->id),
+                    'url_suspender' => route('suspend.user', $model->id),
+                    'url_resetpassword' => route('reset.user', $model->id)
                 ]);
 
             })
@@ -52,6 +93,34 @@ class UsersController extends Controller
             ->rawColumns(['action'])
             ->make(true);
 
+    }
+    
+    public function suspenduser(Request $request)
+    {
+        $var = $request->all();
+        $tipo = $var['tipo'];
+        $id = $var['id'];
+
+        $user = User::find($id);
+
+        if ($tipo == 'Suspensión') {$user->suspendido = true;}
+         else {$user->suspendido = false;}
+        
+        $user->save();
+       
+
+    }
+
+    public function resetusr(Request $request)
+    {
+        $var = $request->all();
+        $id = $var['id'];
+
+        $user = User::find($id);
+        $user->password = bcrypt('123456');
+
+        $user->save();
+       
     }
 
 
@@ -84,12 +153,14 @@ class UsersController extends Controller
         $this->validate($request, [
             'name' => 'required|unique:users,name',
             'email' => 'required |email|unique:users,email',
-            'username' => 'required|max:15|unique:users,username',
-            'password' => 'required'
+            'username' => 'required|max:15|unique:users,username'
             ]);
 
-        
-        $model = User::create($request->all());
+        //$model = User::create($request->all());
+        $model = new User($request->all());
+        $model->password = bcrypt('123456');
+        $model->save();
+
         return $model;
 
      //   //dd($request);
@@ -119,10 +190,13 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    //public function edit($id)
-    public function edit($id) // le cambiamos el parametro para que funcione con implicit binding, se agregó una funcion en el modelo Trainer
+    
+    public function edit($id) 
     {
-      dd($id); 
+      
+        $model = User::find($id);
+        //return $model;
+        return view('admin.users.frmedituser', compact('model'));
       
     }
 
@@ -134,16 +208,21 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    //public function update(Request $request, $id)
     public function update(Request $request, $id)
     {
-     	dd($id);
-        //return $trainer;
-        //return $request;
         
-        //$trainer->fill($request->all());
-       
 
+        $request->validate(['name' => ['required', Rule::unique('users')->ignore($id)],
+                            'email' => ['required','email', Rule::unique('users')->ignore($id)],
+                            'username' => ['required','max:15', Rule::unique('users')->ignore($id)]
+                        ]);
+
+              
+     	$user = User::find($id);
+        $user->fill($request->all());
+
+        $user->save();
+        Return $user;
        
     }
 
@@ -155,7 +234,89 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //return $id;
+
+        User::Destroy($id);
+     
     }
+
+    
+    public function rol($id) 
+    {
+      
+        $user = User::find($id);
+        $roles = Role::all();
+        
+        return view('admin.users.frmroles', compact('user','roles'));
+      
+    }
+
+
+
+    public function getrolesall(Request $request)
+    {
+        
+        $id = $request->input('id');
+
+        $roles = User::join('role_user', 'users.id', '=', 'role_user.user_id')  
+                    ->join('roles', 'role_user.role_id', '=', 'roles.id')                  
+                    ->select(['role_user.role_id', 'roles.nombre', 'users.id', 'users.name'])
+                    ->where('users.id',$id)
+                    ->orderBy('users.id', 'ASC');
+       
+        return DataTables::of($roles)
+
+            ->addColumn('action', function($roles){
+
+                return view('admin.users._actionroles', [
+                    'model' => $roles,                    
+                    'url_deleterol' => route('delete.rol', $roles->role_id)                
+                ]);
+
+            })
+
+            ->addIndexColumn()
+            ->rawColumns(['action'])
+            ->make(true);
+
+    }
+
+    public function insertrol(Request $request)
+    {
+        $idrol = $request->input('idrol');
+        $iduser = $request->input('iduser');
+
+        $user = User::find($iduser);
+        $user->roles()->attach($idrol);
+
+        //return ($idrol);
+       
+    }
+
+
+    public function deleterol(Request $request)
+    {
+        $idrol = $request->input('idrol');
+        $iduser = $request->input('iduser');
+
+        $user = User::find($iduser);
+        $user->roles()->detach($idrol);
+
+        //return ($idrol);
+       
+    }
+
+
+    public function insertlog($user_id, $log)
+    {
+
+        $logs = new Log();
+        $logs->user_id = $user_id;
+        $logs->descripcion = $log;
+        $logs->save();
+
+    }
+
+
 }
 
