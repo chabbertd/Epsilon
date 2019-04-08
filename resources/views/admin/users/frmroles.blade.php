@@ -20,8 +20,6 @@
 
 </div>
 
-
-
 </form>
 
 <div class="card text-center">

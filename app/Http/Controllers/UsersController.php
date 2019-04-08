@@ -9,6 +9,7 @@ use App\Role;
 use App\Log;
 use DataTables;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
 
 
 class UsersController extends Controller
@@ -39,7 +40,7 @@ class UsersController extends Controller
     
     public function log(Request $request){
 
-        $request->user()->authorizeRoles('Administrador de usuarios');
+        $request->user()->authorizeRoles('Visualizador Registro de Logs');
 
         $this->insertlog(Auth::user()->id, 'Acceso al registro de logs');
 
@@ -120,6 +121,28 @@ class UsersController extends Controller
         $user->password = bcrypt('123456');
 
         $user->save();
+       
+    }
+
+
+    public function changepass(Request $request)
+    {
+       
+      $userid = Auth::user()->id;
+      $user = User::find($userid);
+
+      $passold = $request->input('passold');
+      $passnew = $request->input('passnew');
+
+      if (Hash::check($passold, Auth::user()->password))
+          {$passoldvalido = 'ok';
+          $user->password = bcrypt($passnew);
+          $user->save();
+          }
+      else
+          {$passoldvalido = 'error';}
+
+       return $passoldvalido;
        
     }
 

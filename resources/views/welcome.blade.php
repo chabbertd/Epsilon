@@ -21,7 +21,7 @@
                     <div class="col">
                      
                     </div>
-                    <div class="col-6 text-center">
+                    <div class="col-12 text-center">
                        <h1><strong>EPSILON S.R.L</strong></h1>
                        <p>Bienvenido al Sistema de Gestión de Servicios de Laboratorio</p>
                       
@@ -41,7 +41,7 @@
                                     <p>Ingrese su nombre de usuario y contraseña:</p>
                                 </div>
                                 <div class="form-top-right">
-                                    <img src="{{asset('images/LOGO.png')}}"  style="width: 130px;height: 130px;">
+                                    <img src="{{asset('images/LOGO.png')}}"  class="logo">
                                 </div>
                             </div>
                             <div class="form-bottom">

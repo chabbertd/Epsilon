@@ -34,8 +34,8 @@
               <li class="nav-item dropdown">             
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-address-book"></i>Clientes</a> 
                 <div class="dropdown-menu" aria-labelledby="dropdown03">
-                  <a class="dropdown-item" href="#">Clientes particulares</a>
-                  <a class="dropdown-item" href="#">Empresas</a>
+                  <a class="dropdown-item" href="{{route('clientes.index')}}">Clientes particulares</a>
+                  <a class="dropdown-item" href="{{route('empresas.index')}}">Empresas</a>
                 </div> 
               </li>
 
@@ -54,11 +54,11 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-cogs"></i>Parámetros</a> 
                 <div class="dropdown-menu" aria-labelledby="dropdown05">
-                  <a class="dropdown-item" href="#">Parámetros iniciales de arranque</a>
-                  <a class="dropdown-item" href="#">Sectores</a>
-                  <a class="dropdown-item" href="#">Tipos de Muestras</a>
-                   <a class="dropdown-item" href="#">Tipos de Ensayos</a>
-                    <a class="dropdown-item" href="#">Backup de base de datos</a>
+                  <a class="dropdown-item" href="{{route('sectores.index')}}">Sectores</a>
+                  <a class="dropdown-item" href="{{route('muestras.index')}}">Tipos de Muestras</a>
+                   <a class="dropdown-item" href="{{route('ensayos.index')}}">Tipos de Ensayos</a>
+                    <a class="dropdown-item" href="{{route('parametros.index')}}">Parámetros de arranque</a>
+                    <a class="dropdown-item" href="{{route('backups.index')}}">Backup de base de datos</a>
                 </div>     
               </li>
 
@@ -95,3 +95,6 @@
 
           </div>
         </nav>
+
+
+     

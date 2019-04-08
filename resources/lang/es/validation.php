@@ -147,7 +147,8 @@ return [
     'attributes' => ['name' => 'Nombre', 
                      'email' => 'Correo electrónico', 
                      'username' => 'Usuario',
-                     'password' => 'Contraseña'
+                     'password' => 'Contraseña',
+                     'apellidoynombre' => 'Nombre y apellido'
 
                  ],
 

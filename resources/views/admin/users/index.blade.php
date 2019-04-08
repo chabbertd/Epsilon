@@ -4,18 +4,21 @@
 
 @section('content')
 
-<div class="card-header" style="margin-top: 30px;background: white;padding-right: 10px;">Listado de usuarios
 
-  
-    <a href="{{ route('users.create') }}" class="btn btn-info btn-sm btnmodalcreateusr"  style="float: right;" title="Nuevo usuario">Registrar nuevo usuario</a>
+ <div class="card" style="margin-top: 30px;">
     
-  </div>
+    <div class="card-header text-center" style="padding: 5px;">
 
+        Listado de usuarios
+        
 
-<div class="card mb-3 mx-auto" style="padding: 10px;">
+    </div>
 
-
-<table id="tblusuarios" class="table table-striped table-sm" style="width:100%;">
+    <div class="card-body" style="padding: 5px;">
+        <a href="{{ route('users.create') }}" class="btn btn-info btn-sm btnmodalcreateusr"  style="float: left;" title="Nuevo usuario">Nuevo usuario</a>
+        
+        
+    <table id="tblusuarios" class="table table-striped table-sm" style="width:100%;">
         <thead>
             <tr>
                 <th>Id</th>
@@ -28,7 +31,10 @@
         
     </table>
 
- </div>
+    </div>
+
+
+</div>
 
 
 @endsection

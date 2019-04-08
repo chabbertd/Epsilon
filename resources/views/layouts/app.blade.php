@@ -15,6 +15,7 @@
       <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap/bootstrap.min.css')}}">
       <link rel="stylesheet" type="text/css" href="{{asset('plugin/DataTables/datatables.min.css')}}"/>
       <link rel="stylesheet" type="text/css" href="{{asset('plugin/JquerywaitMe/waitMe.css')}}"/>
+
            
     </head>
 
@@ -55,7 +56,7 @@
                                     {!! Form::label('passwordnew','Contraseña nueva(*)') !!}
                                     {!! Form::password('passwordnew', ['class' => 'form-control', 'placeholder' => '********', 'required']) !!}
 
-                                    {!! Form::label('passwordnewconfirm','Repetor contraseña nueva(*)') !!}
+                                    {!! Form::label('passwordnewconfirm','Repetir contraseña nueva(*)') !!}
                                     {!! Form::password('passwordnewconfirm', ['class' => 'form-control', 'placeholder' => '********', 'required']) !!}
 
                                 </div>
@@ -82,12 +83,14 @@
     </div> 
 
 
-    <script src="{{asset('js/jquery/jquery-3.3.1.js')}}"></script>
+    <script src="{{asset('js/jquery/jquery-3.3.1.js')}}"></script>   
     <script type="text/javascript" src="{{asset('plugin/DataTables/datatables.min.js')}}"></script>
    
     <script src="{{asset('js/bootstrap/bootstrap.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('plugin/sweetalert/sweetalert.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('plugin/JquerywaitMe/waitMe.js')}}"></script>
+    <script type="text/javascript" src="{{asset('plugin/jquery-validation-1.19.0/jquery.validate.js')}}"></script>
+    <script type="text/javascript" src="{{asset('plugin/jquery-validation-1.19.0/additional-methods.min.js')}}"></script>
 
     <script>
 
@@ -124,44 +127,7 @@
             form.trigger('reset');
             $('#modal-resetpassword').modal('show');
 
-            // var me = $(this),
-            //     //url = me.attr('href');   
-            //     idrol = $('.rol').val(),
-            //     csrf_token = $('meta[name="csrf-token"]').attr('content'),
-            //     iduser = "";
             
-
-            // if ( $('.rol option:selected').val() == 'null' )
-            //     {
-            //     swal({
-            //                         icon: 'warning',
-            //                         title: 'Rol',
-            //                         text: 'Debe seleccionar un rol a asignar.'
-            //                     });
-            //     }
-            //   else{
-            //     $.ajax({
-            //                 url: "",
-            //                 type: "POST",
-            //                 data: {'_method': 'POST', '_token': csrf_token, 'idrol': idrol, 'iduser': iduser},
-            //                 success: function (response) { 
-
-            //                   $('#tblusuario_rol').DataTable().ajax.reload();
-            //                     swal({
-            //                         icon: 'success',
-            //                         title: 'Permisos',
-            //                         text: 'Se asignó el rol en forma correcta.'
-            //                     });
-            //                 },
-            //                 error: function (xhr) {
-            //                     swal({
-            //                         icon: 'error',
-            //                         title: 'Rol "' + $('.rol option:selected').text()+'"',
-            //                         text: 'Ocurrió un error al intentar asignar el rol, por favor verifique que el usuario no lo tenga ya asignado.'
-            //                     });
-            //                 }
-            //             });
-            //      }  
     
       });                      
 
@@ -181,6 +147,86 @@
               onClose : function() {}
              });
         }
+
+
+
+        $('body').on('click', '#modal-btn-aceptar', function (event) {
+                event.preventDefault();
+
+                var me = $(this),
+                  //  url = me.attr('href'),
+                    title = me.attr('title'),
+                    csrf_token = $('meta[name="csrf-token"]').attr('content'),
+                    passold = $('#passwordold').val();
+                    passnew = $('#passwordnew').val();
+
+                    if($('#passwordold').val()=='' || $('#passwordnew').val()=='' || $('#passwordnewconfirm').val()==''){
+                            swal({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: 'Debe completar todos los datos.'
+                                    });
+                        }
+                        else if($('#passwordnew').val() != $('#passwordnewconfirm').val()){
+                                    swal({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: 'No coinciden [Contraseña nueva] y [Repetir contraseña nueva].'
+                                    });
+                        }
+                        else{
+                            swal({
+                                title: 'Modificar contraseña',
+                                text: 'Está seguro de cambiar la contraseña?',
+                                icon: "info",
+                                buttons: {
+                                    cancel: "Cancelar",
+                                    Aceptar: true,
+                                },
+                               
+                                }).then((result) => {
+
+                                    if (result) {
+                                        run_waitMe();
+
+                                        $.ajax({
+                                            url: "{{ route('changepass.user') }}",
+                                            type: "POST",
+                                            data: {'_method': 'POST', '_token': csrf_token, 'passold': passold,  'passnew': passnew},
+                                            success: function (response) { 
+                                                
+                                                $('body').waitMe('hide');
+
+                                                if (response == 'ok'){
+                                                        swal({
+                                                            icon: 'success',
+                                                            title: 'Cambiar contraseña',
+                                                            text: 'Se modificó la contraseña de acceso en forma correcta.'
+                                                        });
+                                                        $('#modal-resetpassword').modal('hide');
+                                                        }
+                                                else{
+                                                        swal({
+                                                    icon: 'error',
+                                                    title: 'Error',
+                                                    text: 'No coincide la contraseña anterior con la registrada en el sistema.'
+                                                }); 
+                                                }
+                                                },
+                                            error: function (xhr) {
+                                                $('body').waitMe('hide');
+                                                swal({
+                                                    icon: 'error',
+                                                    title: 'Error',
+                                                    text: 'Ocurrió un error al intentar cambiar la contraseña.'
+                                                });
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+
+            });
 
 
     </script>

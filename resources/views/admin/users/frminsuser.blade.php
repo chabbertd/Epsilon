@@ -1,4 +1,7 @@
+<style type="text/css">
+	
 
+</style>
 
 				<div class="card border-secondary mb-3 mx-auto" style="max-width: 60rem;">
 				 

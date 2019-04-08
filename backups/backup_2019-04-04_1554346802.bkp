@@ -1,0 +1,418 @@
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
+-- MySQL dump 10.13  Distrib 5.7.24, for Linux (x86_64)
+--
+-- Host: localhost    Database: bdproyecto1
+-- ------------------------------------------------------
+-- Server version	5.7.24-0ubuntu0.18.04.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `backups`
+--
+
+DROP TABLE IF EXISTS `backups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `backups` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `frecuencia` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ubicacion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `observaciones` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `backups`
+--
+
+LOCK TABLES `backups` WRITE;
+/*!40000 ALTER TABLE `backups` DISABLE KEYS */;
+INSERT INTO `backups` VALUES (1,'Semanal','/home/vagrant/code/epsilon/backups','Copia de resguardo Semanal','2019-04-03 14:24:50','2019-04-03 14:24:50'),(2,'Semanal','/home/vagrant/code/epsilon/backups','Copia de resguardo Semanal','2019-04-03 14:24:50','2019-04-03 14:24:50'),(3,'Diaria','/home/vagrant/code/epsilon/backups','Copia de resguardo Semanal','2019-04-04 03:00:05','2019-04-04 03:00:05');
+/*!40000 ALTER TABLE `backups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `clientes`
+--
+
+DROP TABLE IF EXISTS `clientes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `clientes` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `tipocliente` int(10) unsigned NOT NULL,
+  `apellidoynombre` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `dni` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `direccion` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `localidad` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `codigopostal` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `telefono` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `razonsocial` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cuit` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `condicioniva` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `observaciones` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `clientes`
+--
+
+LOCK TABLES `clientes` WRITE;
+/*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
+INSERT INTO `clientes` VALUES (1,0,'Diego Chabbert','24861526','diego.chabbert@mail.com','----','Comodoro Rivadavia','9000','----',NULL,NULL,NULL,'----','2019-04-03 14:24:50','2019-04-03 14:24:50'),(2,1,NULL,NULL,'empresaABC@mail.com',NULL,NULL,NULL,NULL,'Empresa ABC','30708090149','Responsale Inscripto','----','2019-04-03 14:24:50','2019-04-03 14:24:50'),(4,0,'Gonzalo Domingo','23587988','gonzalo.domingo@mail.com','----','Comodoro Rivadavia','9000','----',NULL,NULL,NULL,'Sin observaciones','2019-04-03 16:18:52','2019-04-03 16:18:52'),(8,1,NULL,NULL,'empresaDDD@mail.com','----','Comodoro Rivadavia','9000','----','Empresa DDD','30708099415','IVA Responsable Inscripto','----','2019-04-03 16:49:17','2019-04-03 16:49:17'),(9,0,'Martin Castro','25465879','martin.castro@mail.com','----','Comodoro Rivadavia','9000','----',NULL,NULL,NULL,'Sin observaciones','2019-04-03 17:18:35','2019-04-03 17:18:35');
+/*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `config_b_k_ps`
+--
+
+DROP TABLE IF EXISTS `config_b_k_ps`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `config_b_k_ps` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `frecuencia` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ubicacion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `observaciones` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `config_b_k_ps`
+--
+
+LOCK TABLES `config_b_k_ps` WRITE;
+/*!40000 ALTER TABLE `config_b_k_ps` DISABLE KEYS */;
+INSERT INTO `config_b_k_ps` VALUES (1,'Diaria','/home/vagrant/code/epsilon/backups','Copia de resguardo Semanal','2019-04-03 14:24:50','2019-04-03 16:57:34');
+/*!40000 ALTER TABLE `config_b_k_ps` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ensayos`
+--
+
+DROP TABLE IF EXISTS `ensayos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ensayos` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `muestra_id` int(10) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ensayos_nombre_muestra_id_unique` (`nombre`,`muestra_id`),
+  KEY `ensayos_muestra_id_foreign` (`muestra_id`),
+  CONSTRAINT `ensayos_muestra_id_foreign` FOREIGN KEY (`muestra_id`) REFERENCES `muestras` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ensayos`
+--
+
+LOCK TABLES `ensayos` WRITE;
+/*!40000 ALTER TABLE `ensayos` DISABLE KEYS */;
+INSERT INTO `ensayos` VALUES (1,'Apecto (Turbidez)','Tipo de ensayo Apecto (Turbidez)',1,'2019-04-03 14:24:50','2019-04-03 14:24:50'),(2,'Color','Tipo de ensayo Color',1,'2019-04-03 14:24:50','2019-04-03 14:24:50'),(3,'PH','Tipo de ensayo PH',1,'2019-04-03 14:24:50','2019-04-03 14:24:50'),(4,'Densidad','Tipo de ensayo Densidad',2,'2019-04-03 14:24:50','2019-04-03 14:24:50'),(5,'Punto de Escurrimiento','Tipo de ensayo Punto de Escurrimiento',2,'2019-04-03 14:24:50','2019-04-03 14:24:50'),(6,'PH','Tipo de ensayo PH',2,'2019-04-03 14:24:50','2019-04-03 14:24:50'),(7,'Curva de Destilación','Tipo de ensayo Curva de Destilación',3,'2019-04-03 14:24:50','2019-04-03 14:24:50'),(8,'Punto de Inflamación','Tipo de ensayo Punto de Inflamación',3,'2019-04-03 14:24:50','2019-04-03 14:24:50');
+/*!40000 ALTER TABLE `ensayos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `logs`
+--
+
+DROP TABLE IF EXISTS `logs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `logs` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int(10) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `logs_user_id_foreign` (`user_id`),
+  CONSTRAINT `logs_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `logs`
+--
+
+LOCK TABLES `logs` WRITE;
+/*!40000 ALTER TABLE `logs` DISABLE KEYS */;
+INSERT INTO `logs` VALUES (1,'Acceso a administracion de usuarios',1,'2019-04-03 14:32:43','2019-04-03 14:32:43'),(2,'Acceso a administracion de usuarios',1,'2019-04-03 14:38:22','2019-04-03 14:38:22'),(3,'Acceso a administracion de usuarios',1,'2019-04-03 14:39:09','2019-04-03 14:39:09'),(4,'Acceso a administracion de usuarios',1,'2019-04-03 16:50:57','2019-04-03 16:50:57'),(5,'Acceso al registro de logs',1,'2019-04-03 17:20:12','2019-04-03 17:20:12'),(6,'Acceso a administracion de usuarios',1,'2019-04-03 17:48:37','2019-04-03 17:48:37'),(7,'Acceso a administracion de usuarios',1,'2019-04-03 17:51:40','2019-04-03 17:51:40'),(8,'Acceso al registro de logs',1,'2019-04-03 17:52:03','2019-04-03 17:52:03'),(9,'Acceso a administracion de usuarios',1,'2019-04-03 17:52:13','2019-04-03 17:52:13'),(10,'Salida del sistema',1,'2019-04-03 17:52:40','2019-04-03 17:52:40'),(11,'Ingreso al sistema',1,'2019-04-03 17:52:51','2019-04-03 17:52:51'),(12,'Acceso a administracion de usuarios',1,'2019-04-03 17:53:07','2019-04-03 17:53:07'),(13,'Acceso a administracion de usuarios',1,'2019-04-03 17:55:22','2019-04-03 17:55:22'),(14,'Acceso a administracion de usuarios',1,'2019-04-03 18:02:52','2019-04-03 18:02:52'),(15,'Acceso a administracion de usuarios',1,'2019-04-03 18:16:07','2019-04-03 18:16:07'),(16,'Acceso a administracion de usuarios',1,'2019-04-03 18:17:39','2019-04-03 18:17:39'),(17,'Acceso a administracion de usuarios',1,'2019-04-03 18:17:56','2019-04-03 18:17:56'),(18,'Acceso a módulo sectores',1,'2019-04-03 18:23:30','2019-04-03 18:23:30'),(19,'Acceso al registro de logs',1,'2019-04-03 18:23:36','2019-04-03 18:23:36'),(20,'Acceso a módulo muestras',1,'2019-04-03 18:28:56','2019-04-03 18:28:56'),(21,'Acceso al registro de logs',1,'2019-04-03 18:29:00','2019-04-03 18:29:00'),(22,'Acceso a módulo ensayos',1,'2019-04-03 18:30:00','2019-04-03 18:30:00'),(23,'Acceso a módulo ensayos',1,'2019-04-03 18:31:49','2019-04-03 18:31:49'),(24,'Acceso a módulo parámetros',1,'2019-04-03 18:31:52','2019-04-03 18:31:52'),(25,'Acceso a módulo backup',1,'2019-04-03 18:31:56','2019-04-03 18:31:56'),(26,'Acceso al registro de logs',1,'2019-04-03 18:32:03','2019-04-03 18:32:03'),(27,'Acceso a módulo clientes particulares',1,'2019-04-03 18:34:27','2019-04-03 18:34:27'),(28,'Acceso a módulo empresas',1,'2019-04-03 18:34:30','2019-04-03 18:34:30'),(29,'Acceso al registro de logs',1,'2019-04-03 18:34:45','2019-04-03 18:34:45'),(30,'Acceso a administracion de usuarios',1,'2019-04-03 19:57:06','2019-04-03 19:57:06'),(31,'Acceso al registro de logs',1,'2019-04-03 19:59:24','2019-04-03 19:59:24'),(32,'Acceso a módulo sectores',1,'2019-04-03 20:00:19','2019-04-03 20:00:19'),(33,'Acceso a módulo muestras',1,'2019-04-03 20:01:15','2019-04-03 20:01:15'),(34,'Acceso a módulo ensayos',1,'2019-04-03 20:02:09','2019-04-03 20:02:09'),(35,'Acceso a módulo muestras',1,'2019-04-03 20:02:54','2019-04-03 20:02:54'),(36,'Acceso a módulo ensayos',1,'2019-04-03 20:04:20','2019-04-03 20:04:20'),(37,'Acceso a módulo parámetros',1,'2019-04-03 20:05:53','2019-04-03 20:05:53'),(38,'Acceso a módulo backup',1,'2019-04-03 20:06:24','2019-04-03 20:06:24'),(39,'Acceso a módulo clientes particulares',1,'2019-04-03 20:08:51','2019-04-03 20:08:51'),(40,'Acceso a módulo empresas',1,'2019-04-03 20:16:27','2019-04-03 20:16:27'),(41,'Acceso a administracion de usuarios',1,'2019-04-03 20:21:18','2019-04-03 20:21:18'),(42,'Acceso a administracion de usuarios',1,'2019-04-03 20:26:58','2019-04-03 20:26:58'),(43,'Acceso a módulo sectores',1,'2019-04-03 20:27:16','2019-04-03 20:27:16');
+/*!40000 ALTER TABLE `logs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `migrations`
+--
+
+DROP TABLE IF EXISTS `migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `migrations` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `migrations`
+--
+
+LOCK TABLES `migrations` WRITE;
+/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_03_03_160216_create_roles_table',1),(4,'2019_03_03_160327_create_role_user_table',1),(5,'2019_03_11_143731_create_logs_table',1),(6,'2019_03_21_150628_create_sectors_table',1),(7,'2019_03_21_151702_create_muestras_table',1),(8,'2019_03_21_151740_create_ensayos_table',1),(9,'2019_03_27_164336_create_parametros_table',1),(10,'2019_03_28_163827_create_backups_table',1),(11,'2019_04_02_154805_create_config_b_k_ps_table',1),(12,'2019_04_03_104824_create_clientes_table',1);
+/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `muestras`
+--
+
+DROP TABLE IF EXISTS `muestras`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `muestras` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sector_id` int(10) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `muestras_nombre_sector_id_unique` (`nombre`,`sector_id`),
+  KEY `muestras_sector_id_foreign` (`sector_id`),
+  CONSTRAINT `muestras_sector_id_foreign` FOREIGN KEY (`sector_id`) REFERENCES `sectors` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `muestras`
+--
+
+LOCK TABLES `muestras` WRITE;
+/*!40000 ALTER TABLE `muestras` DISABLE KEYS */;
+INSERT INTO `muestras` VALUES (1,'Productos Químicos','Tipo de muestra Productos Químicos',1,'2019-04-03 14:24:50','2019-04-03 14:24:50'),(2,'Espumíjenos','Tipo de muestra Espumíjenos',1,'2019-04-03 14:24:50','2019-04-03 14:24:50'),(3,'Combustible','Tipo de muestra Combustible',1,'2019-04-03 14:24:50','2019-04-03 14:24:50'),(4,'Aceites','Tipo de muestra Aceites',1,'2019-04-03 14:24:50','2019-04-03 14:24:50');
+/*!40000 ALTER TABLE `muestras` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `parametros`
+--
+
+DROP TABLE IF EXISTS `parametros`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `parametros` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `valor` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prefijo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sufijo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `descripcion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `parametros_nombre_unique` (`nombre`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `parametros`
+--
+
+LOCK TABLES `parametros` WRITE;
+/*!40000 ALTER TABLE `parametros` DISABLE KEYS */;
+INSERT INTO `parametros` VALUES (1,'Nro de Protocolo','1456','0000-','/CR','Nro de protocolo inicial','2019-04-03 14:24:50','2019-04-03 14:24:50'),(2,'Nro de Pedido Interno','2300','0000-','','Nro de protocolo inicial','2019-04-03 14:24:50','2019-04-03 14:24:50');
+/*!40000 ALTER TABLE `parametros` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `password_resets`
+--
+
+DROP TABLE IF EXISTS `password_resets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  KEY `password_resets_email_index` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+LOCK TABLES `password_resets` WRITE;
+/*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
+/*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `role_user`
+--
+
+DROP TABLE IF EXISTS `role_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `role_user` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `role_id` int(10) unsigned NOT NULL,
+  `user_id` int(10) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `role_user_role_id_user_id_unique` (`role_id`,`user_id`),
+  KEY `role_user_user_id_foreign` (`user_id`),
+  CONSTRAINT `role_user_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `role_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `role_user`
+--
+
+LOCK TABLES `role_user` WRITE;
+/*!40000 ALTER TABLE `role_user` DISABLE KEYS */;
+INSERT INTO `role_user` VALUES (1,6,1,NULL,NULL),(2,4,2,NULL,NULL),(3,1,3,NULL,NULL),(4,6,4,NULL,NULL),(5,4,5,NULL,NULL),(8,6,5,NULL,NULL),(12,1,1,NULL,NULL),(13,2,5,NULL,NULL),(14,3,1,NULL,NULL);
+/*!40000 ALTER TABLE `role_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `roles`
+--
+
+DROP TABLE IF EXISTS `roles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `roles` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `roles_nombre_unique` (`nombre`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `roles`
+--
+
+LOCK TABLES `roles` WRITE;
+/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` VALUES (1,'Administrador de clientes','Administrador de Clientes','2019-04-03 14:24:49','2019-04-03 14:24:49'),(2,'Gestor de pedidos','Gestor de Pedidos','2019-04-03 14:24:49','2019-04-03 14:24:49'),(3,'Administrador de tablas paramétricas','Administrador de tablas paramétricas','2019-04-03 14:24:49','2019-04-03 14:24:49'),(4,'Gestor de informes','Gestor de informes','2019-04-03 14:24:49','2019-04-03 14:24:49'),(5,'Administrador de presupuestos','Administrador de presupuestos','2019-04-03 14:24:49','2019-04-03 14:24:49'),(6,'Administrador de usuarios','Administrador de usuarios','2019-04-03 14:24:49','2019-04-03 14:24:49');
+/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sectors`
+--
+
+DROP TABLE IF EXISTS `sectors`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sectors` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `sectors_nombre_unique` (`nombre`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sectors`
+--
+
+LOCK TABLES `sectors` WRITE;
+/*!40000 ALTER TABLE `sectors` DISABLE KEYS */;
+INSERT INTO `sectors` VALUES (1,'Petróleo','Sector de ensayos de Petróleo','2019-04-03 14:24:50','2019-04-03 14:24:50'),(2,'Medio Ambiente','Sector de ensayos de Medio Ambiente','2019-04-03 14:24:50','2019-04-03 14:24:50'),(3,'Analítica','Sector de ensayos Químicos','2019-04-03 14:24:50','2019-04-03 20:01:00');
+/*!40000 ALTER TABLE `sectors` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `direccion` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `localidad` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `codigopostal` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `telefono` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `eliminado` tinyint(1) NOT NULL DEFAULT '0',
+  `suspendido` tinyint(1) NOT NULL DEFAULT '0',
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_name_unique` (`name`),
+  UNIQUE KEY `users_email_unique` (`email`),
+  UNIQUE KEY `users_username_unique` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'Diego Chabbert','diego.chabbert@mail.com','----','Comodoro Rivadavia','9000','----','chabbertd','$2y$10$nixC4az39h7rtfL/0aGmGuixNamJlfki4ktXDZ8z72XTCz9u3Xvee',0,0,'fa6N3QDlIgHrIzrcoEFzdhS9jdgU4UugPEAXTkSwWITIUuxS0nLpYQfWIv64','2019-04-03 14:24:49','2019-04-03 14:24:49'),(2,'Juan Cortez','juan.cortez@mail.com','----','Comodoro Rivadavia','9000','----','juan','$2y$10$zE43p80rCNAZvhvICi0q.eewbISfDqwp8EKewBkE30851w9u08zci',0,0,NULL,'2019-04-03 14:24:49','2019-04-03 14:24:49'),(3,'Marcelo Ríos','marcelo.rios@mail.com','----','Comodoro Rivadavia','9000','----','marcelo','$2y$10$ROfvNt9Y3nAbXAU69fP1oeOmdvy8q5ax/n2vDjgrOpvoRthWi9eTK',0,0,NULL,'2019-04-03 14:24:49','2019-04-03 14:24:49'),(4,'Pedro Alonso','pedro.alonso@mail.com','----','Comodoro Rivadavia','9000','----','pedro','$2y$10$mZNyjIWcEW8DueZMYVVrju6oe4sbocqs52d7/2lFnuK3r9mos5UCW',0,0,NULL,'2019-04-03 14:24:49','2019-04-03 14:24:49'),(5,'Cristian Carrizo','cristian.carrizo@mail.com','----','Comodoro Rivadavia','9000','----','cristian','$2y$10$RogjzVh2pissbr2adz6mdOoa9ixUtviMYI.TXOMd9G86/cO8tOxMW',0,0,NULL,'2019-04-03 14:24:50','2019-04-03 14:24:50');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-04-04  0:00:05

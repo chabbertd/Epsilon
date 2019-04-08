@@ -6,6 +6,7 @@
 @section('content')
 
 
+
 <div class="card border-secondary mb-3 mx-auto" style="max-width: 60rem;margin-top: 30px;">
   <div class="card-header">Creación de usuarios</div>
 
